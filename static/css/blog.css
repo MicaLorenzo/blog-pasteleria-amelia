@@ -1,0 +1,135 @@
+:root {
+    --navy: #0b2545;
+    --teal: #118a8a;
+    --gold: #d6a441;
+    --gris-claro: #f4f6f8;
+    --gris-texto: #3a3f47;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--gris-claro);
+    color: var(--gris-texto);
+}
+
+.navbar {
+    background: var(--navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    flex-wrap: wrap;
+}
+
+.navbar .marca {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.navbar nav a, .navbar nav button {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 0.95rem;
+}
+
+.logout-form { display: inline; }
+
+.logout-form button {
+    background: var(--teal);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.avatar-navbar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 4px;
+    object-fit: cover;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.mensajes { list-style: none; padding: 0; }
+.mensaje {
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background: #e4f7f0;
+    border-left: 4px solid var(--teal);
+}
+
+.tarjeta-post {
+    background: white;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border-left: 4px solid var(--gold);
+}
+
+.tarjeta-post img, .detalle-post img {
+    max-width: 100%;
+    border-radius: 6px;
+    margin: 0.6rem 0;
+}
+
+.detalle-post .meta, .tarjeta-post .meta {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+a.boton, button.boton {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+a.boton.peligro, button.boton.peligro { background: #b23a48; }
+
+form.form-post input[type=text], form.form-post textarea,
+form input, form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.acciones-post { margin-top: 0.6rem; }
+.acciones-post a, .acciones-post button { margin-right: 0.5rem; }
+
+.footer {
+    text-align: center;
+    color: #999;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.avatar-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+}

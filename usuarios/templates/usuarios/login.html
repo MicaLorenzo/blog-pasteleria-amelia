@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titulo %}Iniciar sesión — Blog Web{% endblock %}
+{% block contenido %}
+    <h1>Iniciar sesión</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button class="boton" type="submit">Ingresar</button>
+    </form>
+    <p>¿No tenés cuenta? <a href="{% url 'registro' %}">Registrate</a></p>
+{% endblock %}

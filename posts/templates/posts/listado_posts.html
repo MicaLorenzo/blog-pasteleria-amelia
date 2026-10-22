@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Posts — Blog Web{% endblock %}
+{% block contenido %}
+    <h1>Últimos posts</h1>
+    {% for post in posts %}
+        <article class="tarjeta-post">
+            <h2><a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a></h2>
+            <p class="meta">Por {{ post.autor.username }} · {{ post.fecha_creacion|date:"d/m/Y H:i" }}</p>
+            {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="Imagen de {{ post.titulo }}">
+            {% endif %}
+            <p>{{ post.contenido|truncatewords:30 }}</p>
+            <a class="boton" href="{{ post.get_absolute_url }}">Leer más</a>
+        </article>
+    {% empty %}
+        <p>Todavía no hay posts publicados. {% if user.is_authenticated %}<a href="{% url 'crear_post' %}">Creá el primero</a>.{% endif %}</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titulo %}Eliminar post — Blog Web{% endblock %}
+{% block contenido %}
+    <h1>¿Eliminar este post?</h1>
+    <p>Estás por eliminar <strong>{{ post.titulo }}</strong>. Esta acción no se puede deshacer.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="boton peligro" type="submit">Sí, eliminar</button>
+        <a class="boton" href="{{ post.get_absolute_url }}">Cancelar</a>
+    </form>
+{% endblock %}
