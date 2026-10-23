@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-{% block titulo %}Registro — Blog Web{% endblock %}
+{% block titulo %}Registro — Pastelería Amelia{% endblock %}
 {% block contenido %}
-    <h1>Crear cuenta</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="boton" type="submit">Registrarme</button>
-    </form>
-    <p>¿Ya tenés cuenta? <a href="{% url 'login' %}">Iniciá sesión</a></p>
+    <div class="caja-form">
+        <h1>Crear cuenta</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="boton" type="submit">Registrarme</button>
+        </form>
+        <p>¿Ya tenés cuenta? <a href="{% url 'login' %}">Iniciá sesión</a></p>
+    </div>
 {% endblock %}

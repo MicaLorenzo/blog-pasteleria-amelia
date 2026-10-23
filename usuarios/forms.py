@@ -30,4 +30,5 @@ class PerfilUsuarioForm(forms.ModelForm):
     class Meta:
         model = PerfilUsuario
         fields = ["bio", "avatar"]
+        labels = {"bio": "Bio", "avatar": "Foto de perfil (opcional)"}
         widgets = {"bio": forms.TextInput(attrs={"placeholder": "Contanos algo sobre vos"})}
