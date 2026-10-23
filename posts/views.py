@@ -38,12 +38,12 @@ def crear_post(request):
             post = form.save(commit=False)
             post.autor = request.user
             post.save()
-            messages.success(request, "Post publicado correctamente.")
+            messages.success(request, "Publicación creada correctamente.")
             return redirect("detalle_post", slug=post.slug)
     else:
         form = PostForm()
     return render(
-        request, "posts/post_form.html", {"form": form, "titulo_pagina": "Nuevo post"}
+        request, "posts/post_form.html", {"form": form, "titulo_pagina": "Nueva publicación"}
     )
 
 
@@ -51,19 +51,19 @@ def crear_post(request):
 def editar_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if post.autor != request.user:
-        return HttpResponseForbidden("No tenés permiso para editar este post: no sos el autor.")
+        return HttpResponseForbidden("No tenés permiso para editar esta publicación: no sos el autor.")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            messages.success(request, "Post actualizado correctamente.")
+            messages.success(request, "Publicación actualizada correctamente.")
             return redirect("detalle_post", slug=post.slug)
     else:
         form = PostForm(instance=post)
     return render(
         request,
         "posts/post_form.html",
-        {"form": form, "titulo_pagina": "Editar post", "post": post},
+        {"form": form, "titulo_pagina": "Editar publicación", "post": post},
     )
 
 
@@ -71,9 +71,9 @@ def editar_post(request, slug):
 def eliminar_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if post.autor != request.user:
-        return HttpResponseForbidden("No tenés permiso para eliminar este post: no sos el autor.")
+        return HttpResponseForbidden("No tenés permiso para eliminar esta publicación: no sos el autor.")
     if request.method == "POST":
         post.delete()
-        messages.success(request, "Post eliminado.")
+        messages.success(request, "Publicación eliminada.")
         return redirect("listado_posts")
     return render(request, "posts/post_confirmar_borrado.html", {"post": post})

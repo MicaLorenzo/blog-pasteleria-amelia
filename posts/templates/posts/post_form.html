@@ -1,10 +1,17 @@
 {% extends "base.html" %}
-{% block titulo %}{{ titulo_pagina }} — Blog Web{% endblock %}
+{% block titulo %}{{ titulo_pagina }} — Pastelería Amelia{% endblock %}
 {% block contenido %}
-    <h1>{{ titulo_pagina }}</h1>
-    <form class="form-post" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="boton" type="submit">Guardar</button>
-    </form>
+    <div class="caja-form">
+        <h1>{{ titulo_pagina }}</h1>
+        <form class="form-post" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="boton" type="submit">Guardar</button>
+            {% if post %}
+                <a class="boton secundario" href="{{ post.get_absolute_url }}">Cancelar</a>
+            {% else %}
+                <a class="boton secundario" href="{% url 'listado_posts' %}">Cancelar</a>
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}

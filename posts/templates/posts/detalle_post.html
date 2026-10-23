@@ -1,15 +1,16 @@
 {% extends "base.html" %}
-{% block titulo %}{{ post.titulo }} — Blog Web{% endblock %}
+{% block titulo %}{{ post.titulo }} — Pastelería Amelia{% endblock %}
 {% block contenido %}
     <article class="detalle-post">
+        <p><a href="{% url 'listado_posts' %}">&larr; Volver a las publicaciones</a></p>
         <h1>{{ post.titulo }}</h1>
         <p class="meta">Por {{ post.autor.username }} · {{ post.fecha_creacion|date:"d/m/Y H:i" }}</p>
         {% if post.imagen %}
             <img src="{{ post.imagen.url }}" alt="Imagen de {{ post.titulo }}">
         {% else %}
-            <p class="meta">(Este post no tiene imagen cargada.)</p>
+            <div class="sin-imagen">🧁<span>Esta publicación no tiene imagen.</span></div>
         {% endif %}
-        <p>{{ post.contenido|linebreaks }}</p>
+        <div class="contenido-post">{{ post.contenido|linebreaks }}</div>
 
         {% if user.is_authenticated and user == post.autor %}
             <div class="acciones-post">
@@ -17,6 +18,5 @@
                 <a class="boton peligro" href="{% url 'eliminar_post' post.slug %}">Eliminar</a>
             </div>
         {% endif %}
-        <p><a href="{% url 'listado_posts' %}">&larr; Volver al listado</a></p>
     </article>
 {% endblock %}

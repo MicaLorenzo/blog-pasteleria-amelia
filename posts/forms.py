@@ -7,9 +7,16 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["titulo", "contenido", "imagen"]
+        labels = {
+            "titulo": "Título",
+            "contenido": "Contenido",
+            "imagen": "Foto (opcional)",
+        }
         widgets = {
-            "titulo": forms.TextInput(attrs={"placeholder": "Título del post"}),
-            "contenido": forms.Textarea(attrs={"rows": 8}),
+            "titulo": forms.TextInput(attrs={"placeholder": "Ej: Chocotorta clásica"}),
+            "contenido": forms.Textarea(
+                attrs={"rows": 8, "placeholder": "Ingredientes, pasos, novedades..."}
+            ),
         }
 
     def clean_titulo(self):
