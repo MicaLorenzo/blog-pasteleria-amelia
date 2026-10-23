@@ -1,135 +1,335 @@
+/* Paleta de Pastelería Amelia */
 :root {
-    --navy: #0b2545;
-    --teal: #118a8a;
-    --gold: #d6a441;
-    --gris-claro: #f4f6f8;
-    --gris-texto: #3a3f47;
+    --crema: #fdf6ee;
+    --blanco: #ffffff;
+    --chocolate: #4a2c2a;
+    --texto: #5b4642;
+    --texto-suave: #8c7570;
+    --frutilla: #d4577a;
+    --frutilla-oscuro: #b23f63;
+    --rosa-claro: #fbe3ea;
+    --borde: #eedfd4;
+    --peligro: #b23a48;
 }
 
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: var(--gris-claro);
-    color: var(--gris-texto);
+    font-family: "Nunito", "Segoe UI", Arial, sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    line-height: 1.6;
 }
 
+h1, h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--chocolate);
+    line-height: 1.25;
+}
+
+a { color: var(--frutilla-oscuro); }
+
+/* ---------- Barra de navegación ---------- */
 .navbar {
-    background: var(--navy);
-    color: white;
+    background: var(--chocolate);
+    color: var(--blanco);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.8rem;
     padding: 0.8rem 1.5rem;
     flex-wrap: wrap;
 }
 
 .navbar .marca {
-    color: var(--gold);
-    font-weight: bold;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--blanco);
     text-decoration: none;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.1;
 }
 
-.navbar nav a, .navbar nav button {
-    color: white;
+.navbar .marca small {
+    display: block;
+    font-family: "Nunito", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--rosa-claro);
+}
+
+.marca-icono { font-size: 1.8rem; }
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+}
+
+.navbar nav a {
+    color: var(--blanco);
     text-decoration: none;
-    margin-left: 1rem;
     font-size: 0.95rem;
 }
 
-.logout-form { display: inline; }
+.navbar nav a:hover { color: var(--rosa-claro); }
 
-.logout-form button {
-    background: var(--teal);
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
+.usuario-navbar { display: inline-flex; align-items: center; gap: 0.4rem; }
 
 .avatar-navbar {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    vertical-align: middle;
-    margin-right: 4px;
     object-fit: cover;
+    border: 2px solid var(--rosa-claro);
 }
 
+.logout-form { display: inline; margin: 0; }
+
+.logout-form button, .navbar a.boton-navbar {
+    background: var(--frutilla);
+    color: var(--blanco);
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+.logout-form button:hover, .navbar a.boton-navbar:hover {
+    background: var(--frutilla-oscuro);
+    color: var(--blanco);
+}
+
+/* ---------- Contenido general ---------- */
 .contenedor {
-    max-width: 900px;
+    max-width: 960px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
-.mensajes { list-style: none; padding: 0; }
+.meta {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    margin: 0.2rem 0 0.6rem;
+}
+
+.mensajes { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+
 .mensaje {
     padding: 0.7rem 1rem;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    background: #e4f7f0;
-    border-left: 4px solid var(--teal);
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    background: var(--rosa-claro);
+    border-left: 4px solid var(--frutilla);
+}
+
+.mensaje.error { background: #f8dcdc; border-left-color: var(--peligro); }
+
+.portada {
+    text-align: center;
+    padding: 1.5rem 1rem 2rem;
+}
+
+.portada h1 { font-size: 2.3rem; margin: 0 0 0.3rem; }
+.portada p { margin: 0; color: var(--texto-suave); }
+
+/* ---------- Tarjetas del listado ---------- */
+.grilla-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.4rem;
 }
 
 .tarjeta-post {
-    background: white;
+    background: var(--blanco);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(74, 44, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-post > a { display: block; text-decoration: none; }
+
+.tarjeta-post img, .tarjeta-post .sin-imagen {
+    width: 100%;
+    height: 190px;
+}
+
+.tarjeta-post img { object-fit: cover; display: block; }
+
+.tarjeta-cuerpo {
+    padding: 1rem 1.2rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.tarjeta-cuerpo h2 { font-size: 1.25rem; margin: 0; }
+.tarjeta-cuerpo h2 a { color: var(--chocolate); text-decoration: none; }
+.tarjeta-cuerpo h2 a:hover { color: var(--frutilla-oscuro); }
+.tarjeta-cuerpo .boton { margin-top: auto; align-self: flex-start; }
+
+/* Lugar que ocupa la imagen cuando el post no tiene una */
+.sin-imagen {
+    background: var(--rosa-claro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.sin-imagen span { font-size: 0.85rem; color: var(--texto-suave); }
+
+/* ---------- Detalle ---------- */
+.detalle-post {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 2px 10px rgba(74, 44, 42, 0.08);
+}
+
+.detalle-post h1 { font-size: 2.1rem; margin: 0.5rem 0 0; }
+
+.detalle-post img, .detalle-post .sin-imagen {
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0.8rem 0;
+}
+
+.detalle-post .sin-imagen { height: 180px; }
+
+.acciones-post { margin-top: 1.2rem; display: flex; gap: 0.6rem; }
+
+/* ---------- Búsqueda ---------- */
+.form-busqueda { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
+.form-busqueda input { flex: 1; margin: 0; }
+
+.resultado {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--frutilla);
+}
+
+.resultado h2 { font-size: 1.2rem; margin: 0; }
+
+.vacio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    background: var(--blanco);
+    border-radius: 14px;
+    color: var(--texto-suave);
+}
+
+/* ---------- Formularios ---------- */
+.caja-form {
+    background: var(--blanco);
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 2rem;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(74, 44, 42, 0.08);
+}
+
+.caja-form h1 { margin-top: 0.3rem; }
+
+form label { font-weight: 600; color: var(--chocolate); display: block; margin-bottom: 0.3rem; }
+
+form input[type=text], form input[type=email], form input[type=password], form textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--borde);
     border-radius: 8px;
-    padding: 1.2rem;
-    margin-bottom: 1.2rem;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    border-left: 4px solid var(--gold);
+    font: inherit;
+    background: var(--crema);
 }
 
-.tarjeta-post img, .detalle-post img {
-    max-width: 100%;
-    border-radius: 6px;
-    margin: 0.6rem 0;
+form input:focus, form textarea:focus {
+    outline: 2px solid var(--frutilla);
+    border-color: transparent;
 }
 
-.detalle-post .meta, .tarjeta-post .meta {
-    color: #777;
+.helptext, form .helptext, form ul:not(.errorlist) {
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+}
+
+.errorlist {
+    color: var(--peligro);
     font-size: 0.85rem;
+    padding-left: 1rem;
+    margin: 0.2rem 0;
 }
 
+/* ---------- Botones ---------- */
 a.boton, button.boton {
     display: inline-block;
-    background: var(--teal);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    background: var(--frutilla);
+    color: var(--blanco);
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
     text-decoration: none;
     border: none;
     cursor: pointer;
+    font: inherit;
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
-a.boton.peligro, button.boton.peligro { background: #b23a48; }
+a.boton:hover, button.boton:hover { background: var(--frutilla-oscuro); }
 
-form.form-post input[type=text], form.form-post textarea,
-form input, form textarea {
-    width: 100%;
-    padding: 0.6rem;
-    margin-bottom: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+a.boton.secundario { background: transparent; color: var(--chocolate); border: 1px solid var(--borde); }
+a.boton.secundario:hover { background: var(--crema); }
+
+a.boton.peligro, button.boton.peligro { background: var(--peligro); }
+
+/* ---------- Perfil ---------- */
+.perfil { text-align: center; }
+
+.avatar-perfil {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--frutilla);
 }
 
-.acciones-post { margin-top: 0.6rem; }
-.acciones-post a, .acciones-post button { margin-right: 0.5rem; }
+.avatar-vacio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--rosa-claro);
+    color: var(--frutilla-oscuro);
+    font-size: 2.6rem;
+    font-weight: 700;
+}
 
+/* ---------- Pie de página ---------- */
 .footer {
     text-align: center;
-    color: #999;
-    padding: 1.5rem;
+    color: var(--texto-suave);
+    padding: 2rem 1rem;
     font-size: 0.85rem;
 }
 
-.avatar-perfil {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--gold);
+.footer p { margin: 0.2rem 0; }
+
+/* ---------- Celulares ---------- */
+@media (max-width: 600px) {
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .detalle-post, .caja-form { padding: 1.2rem; }
+    .portada h1 { font-size: 1.8rem; }
 }
